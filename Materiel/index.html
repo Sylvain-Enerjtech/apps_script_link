@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestion Matériel</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" sizes="192x192" href="icons/icon-192.png">
+<meta name="theme-color" content="#fbbc05">
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #fbbc05; /* Couleur de fond jaune Google Keep */
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Logo ou Icône visuelle */
+  .app-icon {
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    /* Ici on affiche votre icône si elle est dans le dossier icons */
+    background-image: url('icons/icon-192.png'); 
+    background-size: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  h1 { font-size: 24px; margin-bottom: 10px; }
+  p { font-size: 16px; opacity: 0.9; margin-bottom: 30px; max-width: 80%; }
+
+  /* Le Bouton d'action */
+  .btn-connect {
+    background: white;
+    color: #fbbc05;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-decoration: none; /* Pour que ça ressemble à un bouton même si c'est un lien */
+    transition: transform 0.1s;
+  }
+  
+  .btn-connect:active { transform: scale(0.95); }
+
+  /* Message d'aide pour l'installation (visible seulement si besoin) */
+  .install-hint {
+    margin-top: 40px;
+    font-size: 12px;
+    opacity: 0.7;
+    border: 1px dashed rgba(255,255,255,0.5);
+    padding: 10px;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="app-icon"></div>
+  <h1>Gestion Matériel</h1>
+  <p>Application réservée au domaine<br><strong>fhfhfhf.com</strong></p>
+
+  <a id="connectLink" href="https://script.google.com/macros/s/AKfycbwRUQhGyAU_uyXzl_7WQvWkRSIVBkR6m9Dou-Lt_VJICAkHd2IDVIRFRnF_k6nJekxp/exec" class="btn-connect">
+    Accéder à l'outil
+  </a>
+
+  <div class="install-hint">
+    Pour installer l'icône :<br>
+    Menu du navigateur > <strong>Ajouter à l'écran d'accueil</strong>
+  </div>
+
+<script>
+  // --- Service Worker (Indispensable PWA) ---
+  if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+  }
+
+  // --- Logique de Redirection Intelligente ---
+  
+  // On détecte si l'app est lancée depuis l'écran d'accueil (Mode Standalone)
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+  if (isStandalone) {
+      // SI on est déjà installé (clic sur icône) :
+      // On change le texte pour dire qu'on charge
+      document.querySelector('h1').innerText = "Connexion en cours...";
+      document.querySelector('.install-hint').style.display = 'none'; // Cacher l'aide
+      
+      // On lance la redirection automatiquement après 1 petite seconde
+      // (Le temps de voir le logo s'afficher proprement)
+      setTimeout(() => {
+          document.getElementById('connectLink').click(); 
+      }, 800);
+  } else {
+      // SI on est dans le navigateur (Safari/Chrome) :
+      // On ne redirige PAS automatiquement. 
+      // On laisse l'utilisateur le temps de faire "Ajouter à l'écran d'accueil".
+  }
+</script>
+
+</body>
+</html>
+
