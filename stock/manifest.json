@@ -1,10 +1,10 @@
 {
-  "name": "Gestion Matériel",
-  "short_name": "Gestion Matériel",
+  "name": "Stock",
+  "short_name": "Stock",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#fbbc05",
+  "theme_color": "#4285f4",
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -18,3 +18,6 @@
     }
   ]
 }
+
+
+

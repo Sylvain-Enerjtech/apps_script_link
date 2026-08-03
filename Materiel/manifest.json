@@ -1,6 +1,6 @@
 {
-  "name": "Gestion Matériel",
-  "short_name": "Gestion Matériel",
+  "name": "Matériel",
+  "short_name": "Matériel",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -18,3 +18,4 @@
     }
   ]
 }
+
