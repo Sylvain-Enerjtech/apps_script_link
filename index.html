@@ -119,65 +119,59 @@
       document.getElementById('loader').classList.toggle('hidden', !show);
     }
 
-async function demanderCode() {
-  const email = document.getElementById('user-email').value.trim();
-  if (!email.includes('@enerjtech.com')) {
-    alert("Veuillez utiliser votre adresse @enerjtech.com");
-    return;
-  }
-
-  showLoader(true);
-  try {
-    const response = await fetch(API_AUTH, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Evite le blocage CORS
-      body: JSON.stringify({ action: 'demanderOTP', email: email })
-    });
-    const res = await response.json();
-    showLoader(false);
-
-    if (res.success) {
-      localStorage.setItem('pending_email', email);
-      document.getElementById('step-email').classList.add('hidden');
-      document.getElementById('step-otp').classList.remove('hidden');
-    } else {
-      alert(res.message);
+    async function demanderCode() {
+      const email = document.getElementById('user-email').value.trim();
+      if (!email.includes('@enerjtech.com')) {
+        alert("Veuillez utiliser votre adresse @enerjtech.com");
+        return;
+      }
+    
+      showLoader(true);
+      try {
+        const url = `${API_AUTH}?action=demanderOTP&email=${encodeURIComponent(email)}`;
+        const response = await fetch(url);
+        const res = await response.json();
+        showLoader(false);
+    
+        if (res.success) {
+          localStorage.setItem('pending_email', email);
+          document.getElementById('step-email').classList.add('hidden');
+          document.getElementById('step-otp').classList.remove('hidden');
+        } else {
+          alert(res.message);
+        }
+      } catch (err) {
+        showLoader(false);
+        alert("Erreur réseau : " + err);
+      }
     }
-  } catch (err) {
-    showLoader(false);
-    alert("Erreur réseau : " + err);
-  }
-}
-
+    
     async function validerCode() {
-  const email = localStorage.getItem('pending_email');
-  const code = document.getElementById('otp-code').value.trim();
-
-  if (!code) return;
-
-  showLoader(true);
-  try {
-    const response = await fetch(API_AUTH, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Evite le blocage CORS
-      body: JSON.stringify({ action: 'validerOTP', email: email, code: code })
-    });
-    const res = await response.json();
-    showLoader(false);
-
-    if (res.success) {
-      localStorage.setItem('auth_token', res.token);
-      localStorage.setItem('user_email', email);
-      localStorage.removeItem('pending_email');
-      afficherPortail();
-    } else {
-      alert(res.message);
+      const email = localStorage.getItem('pending_email');
+      const code = document.getElementById('otp-code').value.trim();
+    
+      if (!code) return;
+    
+      showLoader(true);
+      try {
+        const url = `${API_AUTH}?action=validerOTP&email=${encodeURIComponent(email)}&code=${encodeURIComponent(code)}`;
+        const response = await fetch(url);
+        const res = await response.json();
+        showLoader(false);
+    
+        if (res.success) {
+          localStorage.setItem('auth_token', res.token);
+          localStorage.setItem('user_email', email);
+          localStorage.removeItem('pending_email');
+          afficherPortail();
+        } else {
+          alert(res.message);
+        }
+      } catch (err) {
+        showLoader(false);
+        alert("Erreur réseau : " + err);
+      }
     }
-  } catch (err) {
-    showLoader(false);
-    alert("Erreur réseau : " + err);
-  }
-}
 
     function afficherPortail() {
       const email = localStorage.getItem('user_email');
