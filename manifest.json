@@ -7,13 +7,13 @@
   "theme_color": "#1a73e8",
   "icons": [
     {
-      "src": "https://img.icons8.com/fluency/192/000000/box.png",
+      "src": "view-source:https://enerjtech.com/wp-content/uploads/2025/12/cropped-Groupe-2612-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://img.icons8.com/fluency/512/000000/box.png",
-      "sizes": "512x512",
+      "src": "https://enerjtech.com/wp-content/uploads/2025/12/cropped-Groupe-2612-270x270.png",
+      "sizes": "270x270",
       "type": "image/png"
     }
   ]
