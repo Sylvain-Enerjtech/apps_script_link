@@ -2,229 +2,150 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Portail Ener'J Tech</title>
-  
-  <!-- Configuration PWA -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portail Applications</title>
+
+  <!-- Configuration PWA & Icônes -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1a73e8">
+  <meta name="theme-color" content="#4285f4">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/192/000000/box.png">
+  <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/96/000000/box.png">
 
   <style>
-    :root {
-      --primary: #1a73e8;
-      --stock: #34a853;
-      --matos: #fbbc05;
-      --bg: #f8f9fa;
-    }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       margin: 0;
-      padding: 20px;
-      background: var(--bg);
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f5f5f5;
       color: #333;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      width: 100%;
-      max-width: 400px;
-      box-sizing: border-box;
-    }
-    h1, h2 { text-align: center; margin-top: 0; }
-    h1 { font-size: 1.4rem; color: #202124; }
-    p { font-size: 0.9rem; color: #5f6368; text-align: center; }
-    
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0 15px 0;
-      border: 1px solid #dadce0;
-      border-radius: 8px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-stock { background: var(--stock); color: white; margin-bottom: 12px; }
-    .btn-matos { background: var(--matos); color: #000; }
-    .btn-outline { background: transparent; border: 1px solid #dadce0; color: #5f6368; margin-top: 15px; }
 
-    .hidden { display: none !important; }
-    .loader { text-align: center; font-weight: 500; color: var(--primary); margin-top: 10px; }
+    header {
+      margin-top: 40px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin: 0;
+      color: #444;
+    }
+    
+    p {
+      font-size: 14px;
+      color: #888;
+      margin-top: 5px;
+    }
+
+    /* Conteneur des boutons */
+    .menu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    /* Le style des boutons */
+    .app-card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #eee;
+    }
+
+    .app-card:active {
+      transform: scale(0.98);
+      background-color: #fafafa;
+    }
+
+    /* Icône emoji ou image à gauche du bouton */
+    .icon-box {
+      width: 50px;
+      height: 50px;
+      background-color: #fbbc05; /* Jaune Google */
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      margin-right: 15px;
+      color: white;
+    }
+    
+    /* Variante de couleur pour d'autres apps */
+    .icon-blue { background-color: #4285f4; }
+    .icon-green { background-color: #34a853; }
+
+    .text-box h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+    
+    .text-box span {
+      font-size: 13px;
+      color: #666;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 12px;
+      color: #999;
+    }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <!-- ÉCRAN 1 : DEMANDE D'EMAIL -->
-    <div id="step-email">
-      <h1>🦺 Portail Ener'J Tech</h1>
-      <p>Entrez votre e-mail professionnel pour recevoir votre code d'accès.</p>
-      
-      <input type="email" id="user-email" placeholder="votre.email@enerjtech.com" required>
-      <button class="btn-primary" onclick="demanderCode()">Recevoir le code</button>
-    </div>
+  <header>
+    <h1>Menu Principal</h1>
+    <p>enerjtech.com</p>
+  </header>
 
-    <!-- ÉCRAN 2 : SAISIE DU CODE OTP -->
-    <div id="step-otp" class="hidden">
-      <h1>🔑 Validation</h1>
-      <p>Un code à 6 chiffres a été envoyé sur votre boîte e-mail.</p>
-      
-      <input type="number" id="otp-code" placeholder="123456" maxlength="6" required>
-      <button class="btn-primary" onclick="validerCode()">Valider le code</button>
-      <button class="btn-outline" onclick="resetConnexion()">Changer d'e-mail</button>
-    </div>
+  <div class="menu-grid">
 
-    <!-- ÉCRAN 3 : PORTAIL DE CHOIX -->
-    <div id="step-portal" class="hidden">
-      <h2>Bienvenue 👋</h2>
-      <p id="user-display" style="font-weight: 600; color: #333;"></p>
-      
-      <div style="margin-top: 25px;">
-        <button class="btn-stock" onclick="ouvrirApp('stock')">📦 Gestion du Stock</button>
-        <button class="btn-matos" onclick="ouvrirApp('matos')">🛠️ Gestion du Matériel</button>
+    <!-- Lien direct vers l'application Matériel (Apps Script) -->
+    <a href="https://script.google.com/a/macros/enerjtech.com/s/AKfycbyR6nZHITZJuUyspet8tT-5tIRfkUSvdtZ6Ur6bjVPMFu5--9g0OUeMgm_7MXERqznIHA/exec" class="app-card">
+      <div class="icon-box">🧰</div>
+      <div class="text-box">
+        <h2>Matériel</h2>
+        <span>Inventaire et suivis</span>
       </div>
+    </a>
 
-      <button class="btn-outline" onclick="deconnexion()">Se déconnecter</button>
-    </div>
+    <!-- Lien direct vers l'application Stock (Apps Script) -->
+    <a href="https://script.google.com/a/macros/enerjtech.com/s/AKfycbzMEiuAXG5ag99lPDbpU1hQPerNtwOCcS7pGLCUtr5BtKehVkOywRcMvYNR7cgvV0nQtA/exec" class="app-card">
+      <div class="icon-box icon-blue">📦</div>
+      <div class="text-box">
+        <h2>Stock</h2>
+        <span>Gestion du Stock</span>
+      </div>
+    </a>
 
-    <div id="loader" class="loader hidden">Traitement en cours...</div>
   </div>
 
+  <footer>
+    © Ener'J Tech
+  </footer>
+
   <script>
-    // --- INSÈRE TES URLS DE DÉPLOIEMENT EXEC ICI ---
-    const URL_STOCK = "https://script.google.com/a/macros/enerjtech.com/s/AKfycbwo48QtwjndElhVEURQf4twcwBl3Qq2Ae1jqIN7aohLltaytCzWbx8l6bYPfJV8KVvigw/exec";
-    const URL_MATOS = "https://script.google.com/macros/s/AKfycbyR6nZHITZJuUyspet8tT-5tIRfkUSvdtZ6Ur6bjVPMFu5--9g0OUeMgm_7MXERqznIHA/exec";
-
-    // API d'authentification par défaut (utilise le script Stock)
-    const API_AUTH = URL_STOCK;
-
-    function showLoader(show) {
-      document.getElementById('loader').classList.toggle('hidden', !show);
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(err => console.log('SW error:', err));
     }
-
-// Helper JSONP qui bypasse tous les blocages CORS
-function callAPI(queryParams) {
-  return new Promise((resolve, reject) => {
-    const callbackName = 'jsonp_' + Math.round(100000 * Math.random());
-    window[callbackName] = function(data) {
-      delete window[callbackName];
-      script.remove();
-      resolve(data);
-    };
-    const script = document.createElement('script');
-    script.src = API_AUTH + '?' + queryParams + '&callback=' + callbackName;
-    script.onerror = () => {
-      delete window[callbackName];
-      script.remove();
-      reject(new Error("Erreur de connexion au serveur"));
-    };
-    document.body.appendChild(script);
-  });
-}
-
-async function demanderCode() {
-  const email = document.getElementById('user-email').value.trim();
-  if (!email.includes('@enerjtech.com')) {
-    alert("Veuillez utiliser votre adresse @enerjtech.com");
-    return;
-  }
-
-  showLoader(true);
-  try {
-    const res = await callAPI(`action=demanderOTP&email=${encodeURIComponent(email)}`);
-    showLoader(false);
-
-    if (res.success) {
-      localStorage.setItem('pending_email', email);
-      document.getElementById('step-email').classList.add('hidden');
-      document.getElementById('step-otp').classList.remove('hidden');
-    } else {
-      alert(res.message);
-    }
-  } catch (err) {
-    showLoader(false);
-    alert(err.message);
-  }
-}
-
-async function validerCode() {
-  const email = localStorage.getItem('pending_email');
-  const code = document.getElementById('otp-code').value.trim();
-
-  if (!code) return;
-
-  showLoader(true);
-  try {
-    const res = await callAPI(`action=validerOTP&email=${encodeURIComponent(email)}&code=${encodeURIComponent(code)}`);
-    showLoader(false);
-
-    if (res.success) {
-      localStorage.setItem('auth_token', res.token);
-      localStorage.setItem('user_email', email);
-      localStorage.removeItem('pending_email');
-      afficherPortail();
-    } else {
-      alert(res.message);
-    }
-  } catch (err) {
-    showLoader(false);
-    alert(err.message);
-  }
-}
-
-    function afficherPortail() {
-      const email = localStorage.getItem('user_email');
-      document.getElementById('user-display').innerText = email;
-      document.getElementById('step-email').classList.add('hidden');
-      document.getElementById('step-otp').classList.add('hidden');
-      document.getElementById('step-portal').classList.remove('hidden');
-    }
-
-    function ouvrirApp(type) {
-      const email = localStorage.getItem('user_email');
-      const targetUrl = (type === 'stock') ? URL_STOCK : URL_MATOS;
-      window.location.href = targetUrl + "?email=" + encodeURIComponent(email);
-    }
-
-    function resetConnexion() {
-      localStorage.removeItem('pending_email');
-      document.getElementById('step-otp').classList.add('hidden');
-      document.getElementById('step-email').classList.remove('hidden');
-    }
-
-    function deconnexion() {
-      localStorage.clear();
-      document.getElementById('step-portal').classList.add('hidden');
-      document.getElementById('step-email').classList.remove('hidden');
-    }
-
-    // Auto-connexion si le jeton existe déjà
-    (function initSession() {
-      if (localStorage.getItem('auth_token') && localStorage.getItem('user_email')) {
-        afficherPortail();
-      }
-    })();
-    // Enregistrement du Service Worker minimal pour le mode PWA
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(err => console.log('SW error:', err));
-}
   </script>
+
 </body>
 </html>
