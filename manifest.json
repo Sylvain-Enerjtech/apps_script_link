@@ -3,17 +3,12 @@
   "short_name": "Ener'J Tech",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f0f2f5",
-  "theme_color": "#1a73e8",
+  "background_color": "#f5f5f5",
+  "theme_color": "#4285f4",
   "icons": [
     {
-      "src": "https://enerjtech.com/wp-content/uploads/2025/12/cropped-Groupe-2612-192x192.png",
+      "src": "logo192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://enerjtech.com/wp-content/uploads/2025/12/cropped-Groupe-2612-270x270.png",
-      "sizes": "270x270",
       "type": "image/png"
     }
   ]
