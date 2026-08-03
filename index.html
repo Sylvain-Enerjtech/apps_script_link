@@ -209,6 +209,10 @@
         afficherPortail();
       }
     })();
+    // Enregistrement du Service Worker minimal pour le mode PWA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(err => console.log('SW error:', err));
+}
   </script>
 </body>
 </html>
