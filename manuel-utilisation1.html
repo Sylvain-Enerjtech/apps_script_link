@@ -147,7 +147,8 @@
   .subtitle {
     margin: 0 0 12px;
     color: var(--ink-muted);
-    font-size: 0.88rem;
+    font-size: 1rem;
+    line-height: 1.5;
     max-width: 55ch;
   }
 
@@ -176,8 +177,8 @@
   .navchip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
   /* ---------- Prose ---------- */
-  .intro { margin: 26px 0 8px; max-width: 62ch; font-size: 0.95rem; }
-  .intro p { line-height: 1.6; color: var(--ink-muted); }
+  .intro { margin: 26px 0 8px; max-width: 62ch; font-size: 1.08rem; }
+  .intro p { line-height: 1.65; color: var(--ink-muted); }
   .intro strong { color: var(--ink); }
 
   .partie {
@@ -198,7 +199,7 @@
     margin: 0 0 6px;
     text-wrap: balance;
   }
-  .partie p.lead { color: var(--ink-muted); max-width: 58ch; line-height: 1.55; margin: 0 0 4px; font-size: 0.95rem; }
+  .partie p.lead { color: var(--ink-muted); max-width: 58ch; line-height: 1.55; margin: 0 0 4px; font-size: 1.05rem; }
 
   /* ---------- Partie Admin repliable ---------- */
   .admin-collapse { margin: 52px 0 0; }
@@ -226,7 +227,7 @@
     margin: 0 0 6px;
     text-wrap: balance;
   }
-  .admin-collapse .summary-text p.lead { color: var(--ink-muted); max-width: 58ch; line-height: 1.55; margin: 0; font-size: 0.95rem; }
+  .admin-collapse .summary-text p.lead { color: var(--ink-muted); max-width: 58ch; line-height: 1.55; margin: 0; font-size: 1.05rem; }
   .admin-collapse .summary-hint {
     margin: 4px 0 0;
     font-size: 0.78rem;
@@ -255,7 +256,7 @@
     display: flex; align-items: center; gap: 8px;
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin: 0 0 18px;
   }
   /* --stock-deep / --materiel-deep already resolve to a light-on-dark tint
@@ -265,29 +266,29 @@
   .app-block.materiel h3.app-title { color: var(--materiel-deep); }
 
   h4.group-title {
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.03em;
     color: var(--ink-muted);
-    margin: 26px 0 10px;
+    margin: 30px 0 12px;
   }
   .app-block h4.group-title:first-of-type { margin-top: 0; }
 
   .action {
-    padding: 12px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--line);
   }
   .action:last-child { border-bottom: none; }
   .action h5 {
     display: flex; align-items: center; gap: 7px;
-    margin: 0 0 4px;
-    font-size: 0.98rem;
+    margin: 0 0 6px;
+    font-size: 1.08rem;
     font-weight: 700;
   }
-  .action p { margin: 0; line-height: 1.55; color: var(--ink); font-size: 0.92rem; }
-  .action p + p { margin-top: 6px; }
-  .action .fine { color: var(--ink-muted); font-size: 0.85rem; }
+  .action p { margin: 0; line-height: 1.6; color: var(--ink); font-size: 1.02rem; }
+  .action p + p { margin-top: 8px; }
+  .action .fine { color: var(--ink-muted); font-size: 0.92rem; }
 
   code.ref {
     font-family: var(--font-mono);
@@ -298,7 +299,7 @@
     white-space: nowrap;
   }
 
-  .steps { margin: 6px 0 0; padding-left: 1.3em; font-size: 0.92rem; line-height: 1.6; }
+  .steps { margin: 6px 0 0; padding-left: 1.3em; font-size: 1.02rem; line-height: 1.6; }
   .steps li { margin-bottom: 2px; }
 
   /* ---------- Admin marker ---------- */
@@ -332,7 +333,7 @@
     border-radius: 8px;
     padding: 11px 14px;
     margin: 14px 0;
-    font-size: 0.88rem;
+    font-size: 0.98rem;
     line-height: 1.5;
   }
   .callout .ic { flex-shrink: 0; font-size: 1rem; line-height: 1.4; }
@@ -351,29 +352,29 @@
     border-bottom: 1px solid var(--line);
     align-items: baseline;
   }
-  .gloss-key { font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+  .gloss-key { font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 6px; }
   .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
   .dot.ok { background: var(--ok); }
   .dot.warn { background: #d9992b; }
   .dot.crit { background: var(--crit); }
   .dot.neutral { background: var(--ink-muted); }
-  .gloss-val { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.5; }
+  .gloss-val { font-size: 0.98rem; color: var(--ink-muted); line-height: 1.5; }
 
   .faq { margin: 8px 0 20px; }
   .faq details {
     border-bottom: 1px solid var(--line);
-    padding: 12px 0;
+    padding: 14px 0;
   }
   .faq summary {
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.92rem;
+    font-size: 1.02rem;
     list-style: none;
   }
   .faq summary::-webkit-details-marker { display: none; }
   .faq summary::before { content: '+ '; color: var(--ink-muted); font-family: var(--font-mono); }
   .faq details[open] summary::before { content: '– '; }
-  .faq p { margin: 8px 0 0; font-size: 0.88rem; color: var(--ink-muted); line-height: 1.55; }
+  .faq p { margin: 8px 0 0; font-size: 0.98rem; color: var(--ink-muted); line-height: 1.6; }
 
   .links-out {
     display: flex;
