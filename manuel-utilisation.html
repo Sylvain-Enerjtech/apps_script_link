@@ -470,7 +470,7 @@
     </div>
     <div class="action">
       <h5>Fiche produit</h5>
-      <p>Une fois le produit reconnu : désignation, ID, stock actuel, <strong>stock mini</strong> (seuil d'alerte), localisation et unité s'affichent.</p>
+      <p>Une fois le produit reconnu : désignation, ID, stock actuel, <strong>stock mini</strong> (seuil d'alerte), localisation et conditionnement s'affichent.</p>
     </div>
 
     <h4 class="group-title">Faire un mouvement</h4>
@@ -514,7 +514,7 @@
     </div>
     <div class="action">
       <h5>Fiche matériel</h5>
-      <p>Désignation, ID, <strong>statut</strong> (Disponible / Emprunté / En Maintenance / Problème) et personne ou ressource assignée s'affichent.</p>
+      <p>Désignation, ID, <strong>statut</strong> (Disponible / Emprunté / En Maintenance / Problème), personne assignée et <strong>localisation actuelle</strong> s'affichent.</p>
     </div>
 
     <h4 class="group-title">Emprunter, restituer, signaler</h4>
@@ -531,14 +531,22 @@
       <p>Envoie le matériel en maintenance, ou le déclare hors service avec une note expliquant le problème (visible ensuite dans "Mes Emprunts").</p>
     </div>
     <div class="action">
+      <h5>Champ Localisation</h5>
+      <p><strong>Obligatoire pour Emprunter et Restituer</strong> (facultatif pour Maintenance/Signaler HS) : un menu déroulant propose les coffres, camions, chantiers et garages/dépôts actifs. L'option <code class="ref">🎒 Mon sac à outils</code> reprend automatiquement ton email déjà saisi — pratique quand le matériel reste avec toi. L'option <code class="ref">✏️ Autre</code> permet de taper un identifiant qui n'est pas encore dans la liste.</p>
+    </div>
+    <div class="callout tip">
+      <span class="ic">💡</span>
+      <p>Utilisé une localisation via "✏️ Autre" ? Un email est envoyé automatiquement à l'administrateur pour qu'il l'ajoute à la liste — inutile de le signaler à part.</p>
+    </div>
+    <div class="action">
       <h5>Champs communs</h5>
-      <p>Email professionnel <strong>ou identifiant d'une ressource partagée</strong> (coffre, camion, chantier — suggestions automatiques dans le champ), chantier et notes facultatifs, puis <code class="ref">Valider</code>.</p>
+      <p>Email professionnel, notes facultatives, puis <code class="ref">Valider</code>. L'email reste toujours le tien — ce n'est jamais la localisation qui y est saisie.</p>
     </div>
 
     <h4 class="group-title">Mes Emprunts</h4>
     <div class="action">
       <h5>👤 Moi / Voir la liste de</h5>
-      <p>Le bouton "👤 Moi" affiche ce que tu as en ta possession. Tu peux aussi taper un autre identifiant (le tien, ou celui d'un coffre/camion/chantier) pour voir ce qu'il détient — visibilité partagée assumée.</p>
+      <p>Le bouton "👤 Moi" affiche ce que tu as en ta possession. Tu peux aussi taper l'email d'un collègue pour voir ce qu'il détient — visibilité partagée assumée.</p>
     </div>
     <div class="action">
       <h5>📄 PDF</h5>
@@ -553,6 +561,12 @@
     <div class="action">
       <h5>🔍 Recherche</h5>
       <p>Même principe que Stock : 2 caractères ou plus, résultats en direct, statut affiché à la place d'un niveau de stock. Cliquer un résultat rebascule sur Scan.</p>
+    </div>
+
+    <h4 class="group-title">Onglet 📦 Ressources</h4>
+    <div class="action">
+      <h5>🗂️ Parcourir les coffres/camions/chantiers/garages</h5>
+      <p>Liste tous les identifiants actifs (type et description inclus), avec un bouton <code class="ref">Copier</code> pour les recoller ailleurs et un détail dépliable <code class="ref">Voir le contenu</code> qui affiche en direct tout le matériel dont la Localisation correspond actuellement à cette ressource — pratique pour vérifier ce qu'il y a dans un coffre avant de s'y rendre. Ouvert à tout le monde, pas seulement aux admins.</p>
     </div>
   </div>
 
@@ -597,7 +611,7 @@
     <h4 class="group-title">Ajouter un produit</h4>
     <div class="action">
       <h5>🆕 Ajouter nouveau produit</h5>
-      <p>Menu Google Sheets uniquement (pas depuis le téléphone). Désignation, catégorie, référence, marque, stock initial, stock mini, unité, localisation. L'ID est généré automatiquement selon la catégorie (ex : <code class="ref">CE-004</code>) et le tableau est retrié.</p>
+      <p>Menu Google Sheets uniquement (pas depuis le téléphone). Désignation, catégorie, référence, marque, stock initial, stock mini, conditionnement, localisation. L'ID est généré automatiquement selon la catégorie (ex : <code class="ref">CE-004</code>) et le tableau est retrié.</p>
     </div>
 
     <h4 class="group-title">Suivi &amp; commandes (onglet web "📊 Gestion" / "📋 Commandes")</h4>
@@ -657,10 +671,18 @@
       <p>Même principe que Stock : programme "Créer maintenances dues" et "Tester envoi rappels" à la fréquence, au jour et à l'heure choisis.</p>
     </div>
 
-    <h4 class="group-title">Ressources partagées (coffres, camions, chantiers)</h4>
+    <h4 class="group-title">Ressources partagées (coffres, camions, chantiers, garages)</h4>
     <div class="action">
       <h5>Onglet RESSOURCES</h5>
-      <p>Ajoute une ligne (ID / Type / Description / Actif) — ex. <code class="ref">COFFRE-Dupont</code> — pour que cet identifiant apparaisse en suggestion dans les champs "email" de l'appli. Aucun redéploiement nécessaire ; passer "Actif" à FALSE retire simplement la suggestion.</p>
+      <p>Ajoute une ligne (ID / Type / Description / Actif) — ex. <code class="ref">COFFRE-Dupont</code> ou <code class="ref">GARAGE</code> — pour que cet identifiant apparaisse dans le menu déroulant "Localisation" de l'écran de scan. L'ID doit commencer par <code class="ref">BOX</code>, <code class="ref">CAMION</code>, <code class="ref">CHANTIER</code>, <code class="ref">COFFRE</code>, <code class="ref">GARAGE</code> ou <code class="ref">DEPOT</code>. Aucun redéploiement nécessaire ; passer "Actif" à FALSE le retire simplement du menu déroulant (il reste utilisable via "✏️ Autre" en texte libre). C'est la seule action réservée à l'admin ici : l'onglet <code class="ref">📦 Ressources</code> lui-même (consultation, "Voir le contenu") est ouvert à tout le monde — voir partie Utilisateur.</p>
+    </div>
+    <div class="action">
+      <h5>Comment ça marche : Localisation</h5>
+      <p>"Qui" reste toujours la vraie personne connectée (traçabilité, non falsifiable). La colonne <strong>Localisation</strong> de MATERIEL joue le rôle de "où est l'outil en ce moment" : elle est mise à jour automatiquement à chaque emprunt et à chaque restitution, avec l'identifiant de ressource choisi dans le menu déroulant (ou un email, voir "Mon sac à outils" côté Utilisateur).</p>
+    </div>
+    <div class="action">
+      <h5>📧 Alerte "nouvelle localisation"</h5>
+      <p>Si quelqu'un utilise "✏️ Autre" avec un identifiant qui respecte le format (ex : <code class="ref">CHANTIER-Léa</code>) mais n'existe pas encore dans RESSOURCES, un email t'est envoyé automatiquement — une seule fois par identifiant, même s'il est réutilisé entre-temps. Ajoute simplement la ligne correspondante dans RESSOURCES quand tu le reçois.</p>
     </div>
 
     <h4 class="group-title">QR codes &amp; outils</h4>
@@ -709,19 +731,17 @@
       <p>Le champ email doit contenir <code class="ref">@enerjtech.com</code> — c'est vérifié avant même l'envoi.</p>
     </details>
     <details>
-      <summary>Mon identifiant est refusé sur Gestion Matériel</summary>
-      <p>Il doit être soit un email <code class="ref">@enerjtech.com</code>, soit commencer par <code class="ref">BOX</code>, <code class="ref">CAMION</code>, <code class="ref">CHANTIER</code> ou <code class="ref">COFFRE</code> (voir "Ressources partagées" plus haut).</p>
+      <summary>Mon email est refusé sur Gestion Matériel</summary>
+      <p>Le champ email doit contenir <code class="ref">@enerjtech.com</code>.</p>
+    </details>
+    <details>
+      <summary>Ma localisation est refusée sur Gestion Matériel</summary>
+      <p>Elle doit être soit un email <code class="ref">@enerjtech.com</code> valide, soit un identifiant commençant par <code class="ref">BOX</code>, <code class="ref">CAMION</code>, <code class="ref">CHANTIER</code>, <code class="ref">COFFRE</code>, <code class="ref">GARAGE</code> ou <code class="ref">DEPOT</code> (voir "Ressources partagées" plus haut). En pratique, choisis-la dans le menu déroulant plutôt que de la taper à la main.</p>
     </details>
     <details>
       <summary>Une commande ou un matériel scanné n'est pas reconnu</summary>
       <p>Vérifie l'ID (majuscules/tirets compris) ou que la ligne existe bien dans l'onglet correspondant du Google Sheet.</p>
     </details>
-  </div>
-
-  <h4 class="group-title">Pour aller plus loin</h4>
-  <div class="links-out">
-    <a href="https://github.com/Sylvain-Enerjtech/Claude" target="_blank" rel="noopener">📂 Dépôt GitHub (code source)</a>
-    <a href="https://github.com/Sylvain-Enerjtech/Claude/blob/main/checklist-recette.html" target="_blank" rel="noopener">🧾 Checklist de recette</a>
   </div>
 
   <footer>
