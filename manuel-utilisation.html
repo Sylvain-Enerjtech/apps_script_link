@@ -106,7 +106,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .wrap { max-width: 740px; margin: 0 auto; padding: 0 20px 72px; }
+  .wrap { max-width: 740px; margin: 0 auto; padding: 0 12px 72px; }
 
   /* ---------- Reading-progress + sticky header ---------- */
   .progress-strip {
@@ -124,8 +124,8 @@
     z-index: 10;
     background: var(--surface);
     border-bottom: 1px solid var(--line);
-    padding: 16px 20px 12px;
-    margin: 0 -20px;
+    padding: 16px 12px 12px;
+    margin: 0 -12px;
   }
   .topbar-inner { max-width: 740px; margin: 0 auto; }
   .eyebrow {
@@ -162,12 +162,12 @@
     flex-shrink: 0;
     font-family: var(--font-body);
     font-weight: 600;
-    font-size: 0.76rem;
+    font-size: 0.86rem;
     color: var(--chip-ink);
     background: var(--chip-bg);
     border: 1px solid transparent;
     border-radius: 999px;
-    padding: 6px 12px;
+    padding: 8px 14px;
     cursor: pointer;
     white-space: nowrap;
     text-decoration: none;
@@ -400,12 +400,9 @@
   }
 
   @media (max-width: 480px) {
-    .wrap { padding-left: 12px; padding-right: 12px; }
-    .topbar { padding-left: 12px; padding-right: 12px; margin-left: -12px; margin-right: -12px; }
     h1 { font-size: 1.3rem; }
     .partie h2, .admin-collapse .summary-text h2 { font-size: 1.5rem; }
     .gloss-row { grid-template-columns: 1fr; gap: 3px; }
-    .navchip { font-size: 0.86rem; padding: 8px 14px; }
   }
 </style>
 
