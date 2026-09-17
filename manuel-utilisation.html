@@ -504,6 +504,12 @@
       <p>Tape 2 caractères ou plus (ID, marque, catégorie ou désignation) : les résultats s'affichent en direct. Code couleur : <strong>vert</strong> = stock OK, <strong>orange</strong> = sous le seuil, <strong>rouge</strong> = rupture.</p>
       <p class="fine">Cliquer un résultat rebascule sur l'onglet Scan avec la fiche déjà chargée, prête pour un mouvement.</p>
     </div>
+
+    <h4 class="group-title">Onglet 💬 Signaler</h4>
+    <div class="action">
+      <h5>🐞 Bug / 💡 Suggestion</h5>
+      <p>Choisis le type, décris le problème ou ton idée, puis <code class="ref">Envoyer</code>. Plus bas, "Mes signalements" liste tout ce que tu as envoyé, avec son statut et la réponse de l'admin dès qu'il y en a une.</p>
+    </div>
   </div>
 
   <!-- ---- MATÉRIEL / Utilisateur ---- -->
@@ -571,6 +577,12 @@
       <h5>🗂️ Parcourir les coffres/camions/chantiers/garages</h5>
       <p>Liste tous les identifiants actifs (type et description inclus), avec un bouton <code class="ref">Copier</code> pour les recoller ailleurs et un détail dépliable <code class="ref">Voir le contenu</code> qui affiche en direct tout le matériel dont la Localisation correspond actuellement à cette ressource — pratique pour vérifier ce qu'il y a dans un coffre avant de s'y rendre. Ouvert à tout le monde, pas seulement aux admins.</p>
     </div>
+
+    <h4 class="group-title">Onglet 💬 Signaler</h4>
+    <div class="action">
+      <h5>🐞 Bug / 💡 Suggestion</h5>
+      <p>Choisis le type, décris le problème ou ton idée, puis <code class="ref">Envoyer</code>. Plus bas, "Mes signalements" liste tout ce que tu as envoyé, avec son statut et la réponse de l'admin dès qu'il y en a une.</p>
+    </div>
   </div>
 
   <!-- ================================================================= -->
@@ -587,12 +599,6 @@
       <span class="chev" aria-hidden="true">▾</span>
     </summary>
 
-  <div class="admin-zone" id="admin-droits">
-    <p class="lock-tag">🔒 Droits &amp; utilisateurs — commun aux deux applis</p>
-    <div class="action">
-      <h5>Devenir le tout premier admin</h5>
-      <p>Une seule fois, dans l'éditeur Apps Script : exécuter <code class="ref">FORCE_ADMIN()</code>. Elle se neutralise ensuite automatiquement dès qu'un utilisateur autorisé existe — c'est une mesure de sécurité, pas un bug.</p>
-    </div>
     <div class="action">
       <h5>👥 Gérer les utilisateurs</h5>
       <p>Menu Google Sheets. Ajoute ou retire un email autorisé — c'est ce qui fait basculer un compte entre le menu "Visiteur" et le menu complet.</p>
@@ -637,6 +643,18 @@
       <p>Menu Sheets. Choisis une fréquence (Désactivés / Tous les jours / Toutes les semaines / Tous les mois), un jour si besoin, une heure — ça programme "Vérifier Stocks Faibles" tout seul, sans avoir à y penser.</p>
     </div>
 
+    <h4 class="group-title">Sauvegarde automatique</h4>
+    <div class="action">
+      <h5>🗄️ Activer la sauvegarde automatique</h5>
+      <p>Menu Sheets. Programme une copie complète du Sheet les 1er et 15 de chaque mois, dans un dossier <code class="ref">Sauvegardes Apps Script</code> créé juste à côté du fichier lui-même (même Drive partagé que le Sheet, pas un dossier séparé). Il n'y a toujours qu'une seule copie à la fois : l'ancienne est remplacée, pas empilée. Recliquer sur le menu ne crée jamais de doublon de déclencheur.</p>
+    </div>
+
+    <h4 class="group-title">Suggestion / Bug (signalement)</h4>
+    <div class="action">
+      <h5>Onglet FEEDBACK</h5>
+      <p>Chaque signalement envoyé depuis l'onglet web "💬 Signaler" ajoute une ligne ici, créée automatiquement dès le premier envoi. Réponds directement dans la colonne <strong>Réponse</strong> — la colonne <strong>Date réponse</strong> se tamponne toute seule. La colonne <strong>Statut</strong> (liste déroulante : Nouveau / En cours / Traité) reste entièrement à ta main.</p>
+    </div>
+
     <h4 class="group-title">QR codes &amp; outils</h4>
     <div class="action">
       <h5>📄 Générer QR Codes / 📲 QR Code App Mobile</h5>
@@ -672,6 +690,18 @@
     <div class="action">
       <h5>⏰ Configurer les rappels automatiques</h5>
       <p>Même principe que Stock : programme "Créer maintenances dues" et "Tester envoi rappels" à la fréquence, au jour et à l'heure choisis.</p>
+    </div>
+
+    <h4 class="group-title">Sauvegarde automatique</h4>
+    <div class="action">
+      <h5>🗄️ Activer la sauvegarde automatique</h5>
+      <p>Menu Sheets. Programme une copie complète du Sheet les 1er et 15 de chaque mois, dans un dossier <code class="ref">Sauvegardes Apps Script</code> créé juste à côté du fichier lui-même (même Drive partagé que le Sheet, pas un dossier séparé). Il n'y a toujours qu'une seule copie à la fois : l'ancienne est remplacée, pas empilée. Recliquer sur le menu ne crée jamais de doublon de déclencheur.</p>
+    </div>
+
+    <h4 class="group-title">Suggestion / Bug (signalement)</h4>
+    <div class="action">
+      <h5>Onglet FEEDBACK</h5>
+      <p>Chaque signalement envoyé depuis l'onglet web "💬 Signaler" ajoute une ligne ici, créée automatiquement dès le premier envoi. Réponds directement dans la colonne <strong>Réponse</strong> — la colonne <strong>Date réponse</strong> se tamponne toute seule. La colonne <strong>Statut</strong> (liste déroulante : Nouveau / En cours / Traité) reste entièrement à ta main.</p>
     </div>
 
     <h4 class="group-title">Ressources partagées (coffres, camions, chantiers, garages)</h4>
