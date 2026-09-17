@@ -1,0 +1,784 @@
+<title>Manuel d'Utilisation</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #f6f1e7;
+    --surface: #fffcf6;
+    --ink: #241f17;
+    --ink-muted: #736a5b;
+    --line: #ddd0ba;
+
+    --stock: #ff6b35;
+    --stock-deep: #a83c17;
+    --stock-wash: #fdeee4;
+
+    --materiel: #c98f06;
+    --materiel-deep: #78530a;
+    --materiel-wash: #fbf1d9;
+
+    --admin: #4a5a86;
+    --admin-deep: #2f3a5c;
+    --admin-wash: #eceef7;
+
+    --ok: #2f7a4f;
+    --crit: #a23324;
+    --crit-bg: #f6ddd4;
+    --tip-bg: #eaf1e8;
+    --focus: #2f6fed;
+
+    --chip-bg: #efe6d5;
+    --chip-ink: #241f17;
+
+    --font-display: 'Archivo', 'Arial Narrow', sans-serif;
+    --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+
+    --gutter: clamp(8px, 3vw, 20px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17130f;
+      --surface: #201a14;
+      --ink: #ece3d3;
+      --ink-muted: #a89b86;
+      --line: #3c3325;
+
+      --stock: #ff7a46;
+      --stock-deep: #ffb08c;
+      --stock-wash: #2a1810;
+
+      --materiel: #e4ab1f;
+      --materiel-deep: #f4cf6b;
+      --materiel-wash: #29220f;
+
+      --admin: #93a3d6;
+      --admin-deep: #c3ccec;
+      --admin-wash: #1c2033;
+
+      --ok: #4fae7c;
+      --crit: #e2695a;
+      --crit-bg: #3a1f1a;
+      --tip-bg: #1c2a1e;
+      --focus: #6ea8ff;
+
+      --chip-bg: #2a2318;
+      --chip-ink: #ece3d3;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #17130f;
+    --surface: #201a14;
+    --ink: #ece3d3;
+    --ink-muted: #a89b86;
+    --line: #3c3325;
+
+    --stock: #ff7a46;
+    --stock-deep: #ffb08c;
+    --stock-wash: #2a1810;
+
+    --materiel: #e4ab1f;
+    --materiel-deep: #f4cf6b;
+    --materiel-wash: #29220f;
+
+    --admin: #93a3d6;
+    --admin-deep: #c3ccec;
+    --admin-wash: #1c2033;
+
+    --ok: #4fae7c;
+    --crit: #e2695a;
+    --crit-bg: #3a1f1a;
+    --tip-bg: #1c2a1e;
+    --focus: #6ea8ff;
+
+    --chip-bg: #2a2318;
+    --chip-ink: #ece3d3;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 740px; margin: 0 auto; padding: 0 var(--gutter) 72px; }
+
+  /* ---------- Reading-progress + sticky header ---------- */
+  .progress-strip {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--stock);
+    z-index: 20;
+    transition: width 0.1s linear;
+  }
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding: 16px var(--gutter) 12px;
+    margin: 0 calc(-1 * var(--gutter));
+  }
+  .topbar-inner { max-width: 740px; margin: 0 auto; }
+  .eyebrow {
+    margin: 0 0 2px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  h1 {
+    margin: 0 0 4px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.55rem;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .subtitle {
+    margin: 0 0 12px;
+    color: var(--ink-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 55ch;
+  }
+
+  .navchips {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
+  }
+  .navchip {
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--chip-ink);
+    background: var(--chip-bg);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 9px 15px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .navchip.is-active { background: var(--ink); color: var(--paper); }
+  .navchip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  /* ---------- Prose ---------- */
+  .intro { margin: 26px 0 8px; max-width: 62ch; font-size: 1.08rem; }
+  .intro p { line-height: 1.65; color: var(--ink-muted); }
+  .intro strong { color: var(--ink); }
+
+  .partie {
+    margin: 52px 0 8px;
+    padding-top: 6px;
+  }
+  .partie-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+    margin: 0 0 2px;
+  }
+  .partie h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.9rem;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .partie p.lead { color: var(--ink-muted); max-width: 58ch; line-height: 1.55; margin: 0 0 4px; font-size: 1.05rem; }
+
+  /* ---------- Partie Admin repliable ---------- */
+  .admin-collapse { margin: 52px 0 0; }
+  .admin-collapse > summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    padding-top: 6px;
+  }
+  .admin-collapse > summary::-webkit-details-marker { display: none; }
+  .admin-collapse > summary::marker { content: ''; }
+  .admin-collapse > summary:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 6px;
+    border-radius: 6px;
+  }
+  .admin-collapse .summary-text { min-width: 0; }
+  .admin-collapse .summary-text h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.9rem;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .admin-collapse .summary-text p.lead { color: var(--ink-muted); max-width: 58ch; line-height: 1.55; margin: 0; font-size: 1.05rem; }
+  .admin-collapse .summary-hint {
+    margin: 4px 0 0;
+    font-size: 0.78rem;
+    color: var(--admin-deep);
+    font-weight: 600;
+  }
+  .admin-collapse .chev {
+    flex-shrink: 0;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--ink-muted);
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+  }
+  .admin-collapse[open] .chev { transform: rotate(180deg); }
+  .admin-collapse[open] .summary-hint { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .admin-collapse .chev { transition: none; }
+  }
+  .admin-collapse > .admin-zone:first-of-type { margin-top: 22px; }
+
+  .app-block { margin: 38px 0; border-top: 2px solid var(--line); padding-top: 16px; }
+  .app-block.stock { border-top-color: var(--stock); }
+  .app-block.materiel { border-top-color: var(--materiel); }
+  .app-block h3.app-title {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 0 0 18px;
+  }
+  /* --stock-deep / --materiel-deep already resolve to a light-on-dark tint
+     via the theme blocks above, so this single rule adapts to both themes
+     without a separate override. */
+  .app-block.stock h3.app-title { color: var(--stock-deep); }
+  .app-block.materiel h3.app-title { color: var(--materiel-deep); }
+
+  h4.group-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--ink-muted);
+    margin: 30px 0 12px;
+  }
+  .app-block h4.group-title:first-of-type { margin-top: 0; }
+
+  .action {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .action:last-child { border-bottom: none; }
+  .action h5 {
+    display: flex; align-items: center; gap: 7px;
+    margin: 0 0 6px;
+    font-size: 1.08rem;
+    font-weight: 700;
+  }
+  .action p { margin: 0; line-height: 1.6; color: var(--ink); font-size: 1.02rem; }
+  .action p + p { margin-top: 8px; }
+  .action .fine { color: var(--ink-muted); font-size: 0.92rem; }
+
+  code.ref {
+    font-family: var(--font-mono);
+    font-size: 0.87em;
+    background: var(--chip-bg);
+    border-radius: 4px;
+    padding: 0 5px;
+    white-space: nowrap;
+  }
+
+  .steps { margin: 6px 0 0; padding-left: 1.3em; font-size: 1.02rem; line-height: 1.6; }
+  .steps li { margin-bottom: 2px; }
+
+  /* ---------- Admin marker ---------- */
+  .admin-zone {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--admin);
+    background: var(--admin-wash);
+    border-radius: 0 8px 8px 0;
+    padding: 4px 16px 4px;
+    margin: 30px 0;
+  }
+  .admin-zone .lock-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--admin-deep);
+    margin: 12px 0 4px;
+  }
+  .admin-zone .action { border-bottom-color: var(--line); }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    border-radius: 8px;
+    padding: 11px 14px;
+    margin: 14px 0;
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+  .callout .ic { flex-shrink: 0; font-size: 1rem; line-height: 1.4; }
+  .callout.warn { background: var(--crit-bg); color: var(--crit); }
+  .callout.warn strong { color: inherit; }
+  .callout.tip { background: var(--tip-bg); color: var(--ok); }
+  .callout p { margin: 0; color: inherit; }
+
+  /* ---------- Glossary / table-ish ---------- */
+  .glossary { margin: 8px 0 20px; border-top: 1px solid var(--line); }
+  .gloss-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .gloss-key { font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 6px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+  .dot.ok { background: var(--ok); }
+  .dot.warn { background: #d9992b; }
+  .dot.crit { background: var(--crit); }
+  .dot.neutral { background: var(--ink-muted); }
+  .gloss-val { font-size: 0.98rem; color: var(--ink-muted); line-height: 1.5; }
+
+  .faq { margin: 8px 0 20px; }
+  .faq details {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+  }
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.02rem;
+    list-style: none;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: '+ '; color: var(--ink-muted); font-family: var(--font-mono); }
+  .faq details[open] summary::before { content: '– '; }
+  .faq p { margin: 8px 0 0; font-size: 0.98rem; color: var(--ink-muted); line-height: 1.6; }
+
+  .links-out {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0 20px;
+  }
+  .links-out a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--chip-bg);
+    border-radius: 8px;
+    padding: 9px 13px;
+    text-decoration: none;
+  }
+  .links-out a:hover { text-decoration: underline; }
+
+  footer {
+    margin: 40px 0 0;
+    color: var(--ink-muted);
+    font-size: 0.76rem;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.3rem; }
+    .partie h2, .admin-collapse .summary-text h2 { font-size: 1.5rem; }
+    .gloss-row { grid-template-columns: 1fr; gap: 3px; }
+  }
+</style>
+
+<div class="progress-strip" id="progress-strip"></div>
+
+<div class="wrap">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <p class="eyebrow">Enerjtech · Gestion Stock &amp; Gestion Matériel</p>
+      <h1>Manuel d'utilisation</h1>
+      <p class="subtitle">Comment utiliser les deux applications au quotidien — pour toute personne du domaine, et pour les administrateurs.</p>
+      <nav class="navchips">
+        <a class="navchip" href="#intro">Prise en main</a>
+        <a class="navchip" href="#user-stock">📦 Stock (Utilisateur)</a>
+        <a class="navchip" href="#user-materiel">🛠️ Matériel (Utilisateur)</a>
+        <a class="navchip" href="#admin-droits">🔒 Droits</a>
+        <a class="navchip" href="#admin-stock">📦 Stock (Admin)</a>
+        <a class="navchip" href="#admin-materiel">🛠️ Matériel (Admin)</a>
+        <a class="navchip" href="#annexe">Annexe</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= PRISE EN MAIN ================= -->
+  <section class="intro" id="intro">
+    <p>
+      <strong>Gestion Stock</strong> suit les pièces et consommables (produits, entrées/sorties,
+      commandes fournisseurs). <strong>Gestion Matériel</strong> suit les outils et équipements
+      (emprunts, retours, maintenance). Ce sont deux applications séparées, chacune avec son
+      propre lien et son propre QR code d'installation — demande-les à ton administrateur si tu
+      ne les as pas encore.
+    </p>
+    <p>
+      <strong>Connexion :</strong> aucune inscription ni mot de passe. L'appli reconnaît le
+      compte Google déjà utilisé sur ton téléphone ou ton poste ; ton email s'affiche en haut
+      ("👤 ..."). Deux niveaux d'accès existent : <strong>Utilisateur</strong> (scan, mouvements,
+      recherche — accessible à tous les comptes du domaine) et <strong>Admin</strong> (onglets et
+      actions étendues, réservés aux comptes explicitement ajoutés — voir "Droits &amp;
+      utilisateurs" plus bas).
+    </p>
+    <p>
+      <strong>Mode sombre :</strong> le bouton 🌓 en haut à droite de chaque appli bascule
+      l'affichage clair/sombre ; le choix est mémorisé sur cet appareil.
+    </p>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- PARTIE 1 — UTILISATEUR                                             -->
+  <!-- ================================================================= -->
+  <div class="partie" id="partie-user">
+    <p class="partie-eyebrow">Partie 1</p>
+    <h2>Utilisateur</h2>
+    <p class="lead">Ce que tout compte du domaine peut faire, sans droits particuliers.</p>
+  </div>
+
+  <!-- ---- STOCK / Utilisateur ---- -->
+  <div class="app-block stock" id="user-stock">
+    <h3 class="app-title">📦 Gestion Stock</h3>
+
+    <h4 class="group-title">Scanner ou saisir un produit</h4>
+    <div class="action">
+      <h5>🚀 Démarrer Caméra</h5>
+      <p>Onglet <code class="ref">📷 Scan</code>. Autorise l'accès caméra la première fois, puis vise l'étiquette QR du produit (préfixe <code class="ref">STOCK|</code>).</p>
+      <p class="fine">Pas de caméra ou refus accidentel ? Saisis l'ID à la main dans le champ "Ex: CE-001" puis <code class="ref">Go</code> — même résultat.</p>
+    </div>
+    <div class="action">
+      <h5>Fiche produit</h5>
+      <p>Une fois le produit reconnu : désignation, ID, stock actuel, <strong>stock mini</strong> (seuil d'alerte), localisation et conditionnement s'affichent.</p>
+    </div>
+
+    <h4 class="group-title">Faire un mouvement</h4>
+    <div class="action">
+      <h5>📤 Sortie (déstockage)</h5>
+      <p>Diminue le stock de la quantité saisie. Refusée si la quantité dépasse le stock disponible ("Stock insuffisant").</p>
+    </div>
+    <div class="action">
+      <h5>📥 Entrée (réappro)</h5>
+      <p>Augmente le stock de la quantité saisie — pour une réception hors commande fournisseur, par exemple.</p>
+    </div>
+    <div class="action">
+      <h5>📝 Inventaire (correction)</h5>
+      <p>Remplace le stock par la valeur saisie (ce n'est pas un ajout). À utiliser après un comptage physique.</p>
+    </div>
+    <div class="action">
+      <h5>Champs communs</h5>
+      <p>Quantité, email professionnel (<code class="ref">@enerjtech.com</code> obligatoire), projet et notes (facultatifs), puis <code class="ref">✅ Valider Mouvement</code>.</p>
+    </div>
+    <div class="callout tip">
+      <span class="ic">💡</span>
+      <p>Si le mouvement fait passer le stock au niveau ou en dessous du stock mini, un email d'alerte part automatiquement à l'administrateur — inutile de le signaler à part.</p>
+    </div>
+
+    <h4 class="group-title">Rechercher un produit</h4>
+    <div class="action">
+      <h5>🔍 Recherche</h5>
+      <p>Tape 2 caractères ou plus (ID, marque, catégorie ou désignation) : les résultats s'affichent en direct. Code couleur : <strong>vert</strong> = stock OK, <strong>orange</strong> = sous le seuil, <strong>rouge</strong> = rupture.</p>
+      <p class="fine">Cliquer un résultat rebascule sur l'onglet Scan avec la fiche déjà chargée, prête pour un mouvement.</p>
+    </div>
+  </div>
+
+  <!-- ---- MATÉRIEL / Utilisateur ---- -->
+  <div class="app-block materiel" id="user-materiel">
+    <h3 class="app-title">🛠️ Gestion Matériel</h3>
+
+    <h4 class="group-title">Scanner ou saisir un matériel</h4>
+    <div class="action">
+      <h5>🚀 Scanner</h5>
+      <p>Onglet <code class="ref">📷 Scan</code>. Vise l'étiquette QR du matériel (préfixe <code class="ref">MATOS|</code>), ou saisis l'ID à la main (ex : <code class="ref">OE-001</code>).</p>
+    </div>
+    <div class="action">
+      <h5>Fiche matériel</h5>
+      <p>Désignation, ID, <strong>statut</strong> (Disponible / Emprunté / En Maintenance / Problème), personne assignée et <strong>localisation actuelle</strong> s'affichent.</p>
+    </div>
+
+    <h4 class="group-title">Emprunter, restituer, signaler</h4>
+    <div class="action">
+      <h5>📤 Emprunter</h5>
+      <p>Refusé si le matériel est déjà emprunté, en maintenance ou signalé HS (message explicite dans chaque cas).</p>
+    </div>
+    <div class="action">
+      <h5>📥 Restituer</h5>
+      <p>Repasse le matériel "Disponible" et enregistre la date de retour.</p>
+    </div>
+    <div class="action">
+      <h5>⚙️ Maintenance / 🆘 Signaler HS</h5>
+      <p>Envoie le matériel en maintenance, ou le déclare hors service avec une note expliquant le problème (visible ensuite dans "Mes Emprunts").</p>
+    </div>
+    <div class="action">
+      <h5>Champ Localisation</h5>
+      <p><strong>Obligatoire pour Emprunter et Restituer</strong> (facultatif pour Maintenance/Signaler HS) : un menu déroulant propose les coffres, camions, chantiers et garages/dépôts actifs. L'option <code class="ref">🎒 Mon sac à outils</code> reprend automatiquement ton email déjà saisi — pratique quand le matériel reste avec toi. L'option <code class="ref">✏️ Autre</code> permet de taper un identifiant qui n'est pas encore dans la liste.</p>
+    </div>
+    <div class="callout tip">
+      <span class="ic">💡</span>
+      <p>Utilisé une localisation via "✏️ Autre" ? Un email est envoyé automatiquement à l'administrateur pour qu'il l'ajoute à la liste — inutile de le signaler à part.</p>
+    </div>
+    <div class="action">
+      <h5>Champs communs</h5>
+      <p>Email professionnel, notes facultatives, puis <code class="ref">Valider</code>. L'email reste toujours le tien — ce n'est jamais la localisation qui y est saisie.</p>
+    </div>
+
+    <h4 class="group-title">Mes Emprunts</h4>
+    <div class="action">
+      <h5>👤 Moi / Voir la liste de</h5>
+      <p>Le bouton "👤 Moi" affiche ce que tu as en ta possession. Tu peux aussi taper l'email d'un collègue pour voir ce qu'il détient — visibilité partagée assumée.</p>
+    </div>
+    <div class="action">
+      <h5>📄 PDF</h5>
+      <p>Génère une fiche imprimable de la liste affichée, avec une page annexe détaillant le contenu de chaque kit d'outils emprunté.</p>
+    </div>
+    <div class="action">
+      <h5>📦 Kits d'outils</h5>
+      <p>Un matériel qui est en réalité un kit affiche un bloc dépliable "Voir le contenu" listant les outils inclus.</p>
+    </div>
+
+    <h4 class="group-title">Rechercher un matériel</h4>
+    <div class="action">
+      <h5>🔍 Recherche</h5>
+      <p>Même principe que Stock : 2 caractères ou plus, résultats en direct, statut affiché à la place d'un niveau de stock. Cliquer un résultat rebascule sur Scan.</p>
+    </div>
+
+    <h4 class="group-title">Onglet 📦 Ressources</h4>
+    <div class="action">
+      <h5>🗂️ Parcourir les coffres/camions/chantiers/garages</h5>
+      <p>Liste tous les identifiants actifs (type et description inclus), avec un bouton <code class="ref">Copier</code> pour les recoller ailleurs et un détail dépliable <code class="ref">Voir le contenu</code> qui affiche en direct tout le matériel dont la Localisation correspond actuellement à cette ressource — pratique pour vérifier ce qu'il y a dans un coffre avant de s'y rendre. Ouvert à tout le monde, pas seulement aux admins.</p>
+    </div>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- PARTIE 2 — ADMIN (repliable)                                       -->
+  <!-- ================================================================= -->
+  <details class="admin-collapse" id="partie-admin">
+    <summary>
+      <div class="summary-text">
+        <p class="partie-eyebrow">Partie 2</p>
+        <h2>Administrateur</h2>
+        <p class="lead">Actions réservées aux comptes autorisés — principalement depuis le menu Google Sheets.</p>
+        <p class="summary-hint">▸ Cliquer pour afficher</p>
+      </div>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+
+  <div class="admin-zone" id="admin-droits">
+    <p class="lock-tag">🔒 Droits &amp; utilisateurs — commun aux deux applis</p>
+    <div class="action">
+      <h5>Devenir le tout premier admin</h5>
+      <p>Une seule fois, dans l'éditeur Apps Script : exécuter <code class="ref">FORCE_ADMIN()</code>. Elle se neutralise ensuite automatiquement dès qu'un utilisateur autorisé existe — c'est une mesure de sécurité, pas un bug.</p>
+    </div>
+    <div class="action">
+      <h5>👥 Gérer les utilisateurs</h5>
+      <p>Menu Google Sheets. Ajoute ou retire un email autorisé — c'est ce qui fait basculer un compte entre le menu "Visiteur" et le menu complet.</p>
+    </div>
+    <div class="action">
+      <h5>⚙️ Configurer email Admin</h5>
+      <p>Menu Google Sheets, réservé à l'admin actuel. Change l'email administrateur (celui qui reçoit les alertes).</p>
+    </div>
+    <div class="callout warn">
+      <span class="ic">⚠️</span>
+      <p><strong>Un compte non autorisé</strong> voit un menu Sheets réduit et se fait refuser l'accès aux onglets/actions listés ci-dessous, aussi bien dans le Sheet que dans l'appli web.</p>
+    </div>
+  </div>
+
+  <!-- ---- STOCK / Admin ---- -->
+  <div class="app-block stock" id="admin-stock">
+    <h3 class="app-title">📦 Gestion Stock — Admin</h3>
+
+    <h4 class="group-title">Ajouter un produit</h4>
+    <div class="action">
+      <h5>🆕 Ajouter nouveau produit</h5>
+      <p>Menu Google Sheets uniquement (pas depuis le téléphone). Désignation, catégorie, référence, marque, stock initial, stock mini, conditionnement, localisation. L'ID est généré automatiquement selon la catégorie (ex : <code class="ref">CE-004</code>) et le tableau est retrié.</p>
+    </div>
+
+    <h4 class="group-title">Suivi &amp; commandes (onglet web "📊 Gestion" / "📋 Commandes")</h4>
+    <div class="action">
+      <h5>🔍 Vérifier Stocks Faibles</h5>
+      <p>Envoie un email récapitulatif à l'admin si des produits sont sous leur seuil.</p>
+    </div>
+    <div class="action">
+      <h5>📦 Générer Commandes Auto</h5>
+      <p>Crée une ligne de commande pour chaque produit sous le seuil, avec l'urgence "URGENT" en cas de rupture.</p>
+    </div>
+    <div class="action">
+      <h5>📥 Réceptionner une commande</h5>
+      <p>Depuis l'appli web : saisir l'ID (<code class="ref">CMD-xxx</code>) → statut "Livrée", stock incrémenté. Depuis le menu Sheets "📥 Réceptionner une commande" : coche plusieurs commandes "En cours" d'un coup.</p>
+    </div>
+
+    <h4 class="group-title">Rappels automatiques</h4>
+    <div class="action">
+      <h5>⏰ Configurer les rappels automatiques</h5>
+      <p>Menu Sheets. Choisis une fréquence (Désactivés / Tous les jours / Toutes les semaines / Tous les mois), un jour si besoin, une heure — ça programme "Vérifier Stocks Faibles" tout seul, sans avoir à y penser.</p>
+    </div>
+
+    <h4 class="group-title">QR codes &amp; outils</h4>
+    <div class="action">
+      <h5>📄 Générer QR Codes / 📲 QR Code App Mobile</h5>
+      <p>Crée les étiquettes à imprimer (onglet QR_Code) et le QR d'installation de l'appli sur un téléphone.</p>
+    </div>
+    <div class="action">
+      <h5>🔤 Trier le tableau par ID</h5>
+      <p>Re-trie manuellement l'onglet STOCK si besoin (se fait déjà automatiquement à chaque ajout de produit).</p>
+    </div>
+  </div>
+
+  <!-- ---- MATÉRIEL / Admin ---- -->
+  <div class="app-block materiel" id="admin-materiel">
+    <h3 class="app-title">🛠️ Gestion Matériel — Admin</h3>
+
+    <h4 class="group-title">Ajouter un matériel</h4>
+    <div class="action">
+      <h5>🆕 Ajouter nouveau matériel</h5>
+      <p>Menu Google Sheets. Désignation, catégorie, marque, n° série, localisation, état, date d'achat, dernière maintenance + fréquence (mois) — la prochaine maintenance est calculée automatiquement.</p>
+    </div>
+
+    <h4 class="group-title">Maintenance</h4>
+    <div class="action">
+      <h5>Onglet MAINTENANCE — colonnes "Envoyé le" / "Date retour réel"</h5>
+      <p>Coller une date en colonne "Envoyé le" passe le matériel "En Maintenance". Coller une date en "Date retour réel" le repasse "Disponible" et recalcule la prochaine échéance. Fonctionne aussi en collant plusieurs lignes à la fois.</p>
+    </div>
+    <div class="action">
+      <h5>📅 Créer maintenances dues / 📧 Tester envoi rappels</h5>
+      <p>Le premier crée une ligne MAINTENANCE pour tout matériel à échéance ≤ 10 jours. Le second envoie l'email récap des échéances à 30/15/5 jours ou en retard.</p>
+    </div>
+
+    <h4 class="group-title">Rappels automatiques</h4>
+    <div class="action">
+      <h5>⏰ Configurer les rappels automatiques</h5>
+      <p>Même principe que Stock : programme "Créer maintenances dues" et "Tester envoi rappels" à la fréquence, au jour et à l'heure choisis.</p>
+    </div>
+
+    <h4 class="group-title">Ressources partagées (coffres, camions, chantiers, garages)</h4>
+    <div class="action">
+      <h5>Onglet RESSOURCES</h5>
+      <p>Ajoute une ligne (ID / Type / Description / Actif) — ex. <code class="ref">COFFRE-Dupont</code> ou <code class="ref">GARAGE</code> — pour que cet identifiant apparaisse dans le menu déroulant "Localisation" de l'écran de scan. L'ID doit commencer par <code class="ref">BOX</code>, <code class="ref">CAMION</code>, <code class="ref">CHANTIER</code>, <code class="ref">COFFRE</code>, <code class="ref">GARAGE</code> ou <code class="ref">DEPOT</code>. Aucun redéploiement nécessaire ; passer "Actif" à FALSE le retire simplement du menu déroulant (il reste utilisable via "✏️ Autre" en texte libre). C'est la seule action réservée à l'admin ici : l'onglet <code class="ref">📦 Ressources</code> lui-même (consultation, "Voir le contenu") est ouvert à tout le monde — voir partie Utilisateur.</p>
+    </div>
+    <div class="action">
+      <h5>Comment ça marche : Localisation</h5>
+      <p>"Qui" reste toujours la vraie personne connectée (traçabilité, non falsifiable). La colonne <strong>Localisation</strong> de MATERIEL joue le rôle de "où est l'outil en ce moment" : elle est mise à jour automatiquement à chaque emprunt et à chaque restitution, avec l'identifiant de ressource choisi dans le menu déroulant (ou un email, voir "Mon sac à outils" côté Utilisateur).</p>
+    </div>
+    <div class="action">
+      <h5>📧 Alerte "nouvelle localisation"</h5>
+      <p>Si quelqu'un utilise "✏️ Autre" avec un identifiant qui respecte le format (ex : <code class="ref">CHANTIER-Léa</code>) mais n'existe pas encore dans RESSOURCES, un email t'est envoyé automatiquement — une seule fois par identifiant, même s'il est réutilisé entre-temps. Ajoute simplement la ligne correspondante dans RESSOURCES quand tu le reçois.</p>
+    </div>
+
+    <h4 class="group-title">QR codes &amp; outils</h4>
+    <div class="action">
+      <h5>📄 Générer QR Codes / 📲 QR Code App Mobile</h5>
+      <p>Identique à Gestion Stock.</p>
+    </div>
+  </div>
+  </details>
+
+  <!-- ================================================================= -->
+  <!-- ANNEXE                                                             -->
+  <!-- ================================================================= -->
+  <div class="partie" id="annexe">
+    <p class="partie-eyebrow">Annexe</p>
+    <h2>Repères &amp; dépannage</h2>
+  </div>
+
+  <h4 class="group-title">Statuts Matériel</h4>
+  <div class="glossary">
+    <div class="gloss-row"><span class="gloss-key"><span class="dot ok"></span>Disponible</span><span class="gloss-val">Peut être emprunté.</span></div>
+    <div class="gloss-row"><span class="gloss-key"><span class="dot warn"></span>Emprunté</span><span class="gloss-val">En possession d'une personne ou d'une ressource partagée — voir "Mes Emprunts".</span></div>
+    <div class="gloss-row"><span class="gloss-key"><span class="dot neutral"></span>En Maintenance</span><span class="gloss-val">Indisponible à l'emprunt, en cours d'intervention.</span></div>
+    <div class="gloss-row"><span class="gloss-key"><span class="dot crit"></span>Problème</span><span class="gloss-val">Signalé hors service ; la note explicative est visible dans "Mes Emprunts".</span></div>
+  </div>
+
+  <h4 class="group-title">Couleurs Stock (recherche)</h4>
+  <div class="glossary">
+    <div class="gloss-row"><span class="gloss-key"><span class="dot ok"></span>Vert</span><span class="gloss-val">Stock au-dessus du seuil mini.</span></div>
+    <div class="gloss-row"><span class="gloss-key"><span class="dot warn"></span>Orange</span><span class="gloss-val">Stock au niveau ou sous le seuil mini.</span></div>
+    <div class="gloss-row"><span class="gloss-key"><span class="dot crit"></span>Rouge</span><span class="gloss-val">Rupture (stock à zéro).</span></div>
+  </div>
+
+  <h4 class="group-title">Questions fréquentes</h4>
+  <div class="faq">
+    <details>
+      <summary>Je ne vois pas le menu complet dans Google Sheets</summary>
+      <p>Ton compte n'a pas encore été ajouté comme utilisateur autorisé. Demande à l'administrateur de l'ajouter via le menu "👥 Gérer les utilisateurs".</p>
+    </details>
+    <details>
+      <summary>La caméra ne s'active pas</summary>
+      <p>Vérifie l'autorisation caméra dans les réglages de ton navigateur pour ce site. En attendant, la saisie manuelle de l'ID fonctionne exactement pareil.</p>
+    </details>
+    <details>
+      <summary>Mon email est refusé sur Gestion Stock</summary>
+      <p>Le champ email doit contenir <code class="ref">@enerjtech.com</code> — c'est vérifié avant même l'envoi.</p>
+    </details>
+    <details>
+      <summary>Mon email est refusé sur Gestion Matériel</summary>
+      <p>Le champ email doit contenir <code class="ref">@enerjtech.com</code>.</p>
+    </details>
+    <details>
+      <summary>Ma localisation est refusée sur Gestion Matériel</summary>
+      <p>Elle doit être soit un email <code class="ref">@enerjtech.com</code> valide, soit un identifiant commençant par <code class="ref">BOX</code>, <code class="ref">CAMION</code>, <code class="ref">CHANTIER</code>, <code class="ref">COFFRE</code>, <code class="ref">GARAGE</code> ou <code class="ref">DEPOT</code> (voir "Ressources partagées" plus haut). En pratique, choisis-la dans le menu déroulant plutôt que de la taper à la main.</p>
+    </details>
+    <details>
+      <summary>Une commande ou un matériel scanné n'est pas reconnu</summary>
+      <p>Vérifie l'ID (majuscules/tirets compris) ou que la ligne existe bien dans l'onglet correspondant du Google Sheet.</p>
+    </details>
+  </div>
+
+  <footer>
+    <p>Manuel</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var strip = document.getElementById('progress-strip');
+  function updateProgress() {
+    var h = document.documentElement;
+    var scrolled = h.scrollTop;
+    var max = h.scrollHeight - h.clientHeight;
+    strip.style.width = (max > 0 ? (scrolled / max * 100) : 0) + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.navchip'));
+  var targets = chips.map(function (chip) {
+    return document.getElementById(chip.getAttribute('href').slice(1));
+  });
+
+  function updateActiveChip() {
+    var pos = window.scrollY + 90;
+    var activeIndex = 0;
+    targets.forEach(function (t, i) {
+      if (t && t.offsetTop <= pos) activeIndex = i;
+    });
+    chips.forEach(function (c, i) { c.classList.toggle('is-active', i === activeIndex); });
+  }
+  document.addEventListener('scroll', updateActiveChip, { passive: true });
+  updateActiveChip();
+})();
+</script>
