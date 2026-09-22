@@ -597,6 +597,7 @@
       </div>
       <span class="chev" aria-hidden="true">▾</span>
     </summary>
+    
   <div class="admin-zone" id="admin-droits">
     <div class="action">
       <h5>👥 Gérer les utilisateurs</h5>
@@ -645,7 +646,7 @@
     <h4 class="group-title">Sauvegarde automatique</h4>
     <div class="action">
       <h5>🗄️ Activer la sauvegarde automatique</h5>
-      <p>Menu Sheets. Programme une copie complète du Sheet les 1er et 15 de chaque mois, dans un dossier <code class="ref">Sauvegardes</code> créé juste à côté du fichier lui-même (même Drive partagé que le Sheet, pas un dossier séparé). Il n'y a toujours qu'une seule copie à la fois : l'ancienne est remplacée, pas empilée. Recliquer sur le menu ne crée jamais de doublon de déclencheur.</p>
+      <p>Menu Sheets. Programme une copie complète du Sheet les 1er et 15 de chaque mois, dans un dossier <code class="ref">Sauvegardes Apps Script</code> créé juste à côté du fichier lui-même (même Drive partagé que le Sheet, pas un dossier séparé). Il n'y a toujours qu'une seule copie à la fois : l'ancienne est remplacée, pas empilée. Recliquer sur le menu ne crée jamais de doublon de déclencheur.</p>
     </div>
 
     <h4 class="group-title">Suggestion / Bug (signalement)</h4>
@@ -662,6 +663,16 @@
     <div class="action">
       <h5>🔤 Trier le tableau par ID</h5>
       <p>Re-trie manuellement l'onglet STOCK si besoin (se fait déjà automatiquement à chaque ajout de produit).</p>
+    </div>
+
+    <h4 class="group-title">Catalogue photos</h4>
+    <div class="action">
+      <h5>📖 Générer catalogue photos</h5>
+      <p>Menu Sheets. Construit l'onglet CATALOGUE (ID / Référence / Photo / Désignation / QR Code / Catégorie) à partir des produits de STOCK. Pour qu'une photo apparaisse, dépose dans le dossier Drive <code class="ref">Photos Catalogue Stock</code> (créé automatiquement à côté du Sheet) un fichier nommé <strong>exactement comme l'ID concerné</strong> (ex. <code class="ref">OL-64.jpg</code> pour le produit <code class="ref">OL-64</code>), puis relance le menu. Juste après la génération, les photos peuvent ne pas s'afficher tout de suite dans l'onglet CATALOGUE — c'est un simple souci de rafraîchissement de Sheets : change d'onglet puis reviens dessus, elles apparaissent. Une fois satisfait du résultat : Fichier &gt; Télécharger &gt; PDF.</p>
+    </div>
+    <div class="action">
+      <h5>Taille max d'une photo</h5>
+      <p>La limite porte sur les <strong>dimensions</strong>, pas sur le poids du fichier : une image doit faire <strong>1 million de pixels maximum</strong> (largeur × hauteur), par exemple 1000x1000 — une photo de 1200x1200 (1,44 million de pixels) est refusée même si elle ne pèse que quelques dizaines de Ko. Redimensionnez avec un logiciel gratuit type FastStone Photo Resizer avant de la déposer dans le dossier. Une photo trop grande n'empêche pas la génération du reste du catalogue : elle est simplement ignorée (cellule vide), et son nom est listé dans le message de fin.</p>
     </div>
   </div>
 
@@ -694,7 +705,7 @@
     <h4 class="group-title">Sauvegarde automatique</h4>
     <div class="action">
       <h5>🗄️ Activer la sauvegarde automatique</h5>
-      <p>Menu Sheets. Programme une copie complète du Sheet les 1er et 15 de chaque mois, dans un dossier <code class="ref">Sauvegardes</code> créé juste à côté du fichier lui-même (même Drive partagé que le Sheet, pas un dossier séparé). Il n'y a toujours qu'une seule copie à la fois : l'ancienne est remplacée, pas empilée. Recliquer sur le menu ne crée jamais de doublon de déclencheur.</p>
+      <p>Menu Sheets. Programme une copie complète du Sheet les 1er et 15 de chaque mois, dans un dossier <code class="ref">Sauvegardes Apps Script</code> créé juste à côté du fichier lui-même (même Drive partagé que le Sheet, pas un dossier séparé). Il n'y a toujours qu'une seule copie à la fois : l'ancienne est remplacée, pas empilée. Recliquer sur le menu ne crée jamais de doublon de déclencheur.</p>
     </div>
 
     <h4 class="group-title">Suggestion / Bug (signalement)</h4>
@@ -721,6 +732,16 @@
     <div class="action">
       <h5>📄 Générer QR Codes / 📲 QR Code App Mobile</h5>
       <p>Identique à Gestion Stock.</p>
+    </div>
+
+    <h4 class="group-title">Catalogue photos</h4>
+    <div class="action">
+      <h5>📖 Générer catalogue photos</h5>
+      <p>Menu Sheets. Construit l'onglet CATALOGUE (ID / Marque / Photo / Désignation / QR Code / Catégorie) à partir des matériels de MATERIEL. Pour qu'une photo apparaisse, dépose dans le dossier Drive <code class="ref">Photos Catalogue Matériel</code> (créé automatiquement à côté du Sheet) un fichier nommé <strong>exactement comme l'ID concerné</strong> (ex. <code class="ref">OE-004.jpg</code> pour le matériel <code class="ref">OE-004</code>), puis relance le menu. Juste après la génération, les photos peuvent ne pas s'afficher tout de suite dans l'onglet CATALOGUE — c'est un simple souci de rafraîchissement de Sheets : change d'onglet puis reviens dessus, elles apparaissent. Une fois satisfait du résultat : Fichier &gt; Télécharger &gt; PDF.</p>
+    </div>
+    <div class="action">
+      <h5>Taille max d'une photo</h5>
+      <p>Identique à Gestion Stock : 1 million de pixels maximum (ex. 1000x1000), quel que soit le poids du fichier. Une photo trop grande est simplement ignorée (cellule vide) et listée dans le message de fin, sans bloquer le reste du catalogue.</p>
     </div>
   </div>
   </details>
