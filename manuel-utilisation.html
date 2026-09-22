@@ -668,11 +668,11 @@
     <h4 class="group-title">Catalogue photos</h4>
     <div class="action">
       <h5>📖 Générer catalogue photos</h5>
-      <p>Menu Sheets. Construit l'onglet CATALOGUE (ID / Référence / Photo / Désignation / QR Code / Catégorie) à partir des produits de STOCK. Pour qu'une photo apparaisse, dépose dans le dossier Drive <code class="ref">Photos Catalogue Stock</code> (créé automatiquement à côté du Sheet) un fichier nommé <strong>exactement comme l'ID concerné</strong> (ex. <code class="ref">OL-64.jpg</code> pour le produit <code class="ref">OL-64</code>), puis relance le menu. Juste après la génération, les photos peuvent ne pas s'afficher tout de suite dans l'onglet CATALOGUE — c'est un simple souci de rafraîchissement de Sheets : change d'onglet puis reviens dessus, elles apparaissent. Une fois satisfait du résultat : Fichier &gt; Télécharger &gt; PDF.</p>
+      <p>Menu Sheets. Construit l'onglet CATALOGUE (ID / Référence / Photo / Désignation / QR Code / Catégorie) à partir des produits de STOCK. Pour qu'une photo apparaisse, dépose dans le dossier Drive <code class="ref">Photos Catalogue Stock</code> (créé automatiquement à côté du Sheet) un fichier nommé <strong>exactement comme l'ID concerné</strong> (ex. <code class="ref">OL-64.jpg</code> pour le produit <code class="ref">OL-64</code>), puis relance le menu. Une fois satisfait du résultat : Fichier &gt; Télécharger &gt; PDF.</p>
     </div>
     <div class="action">
       <h5>Taille max d'une photo</h5>
-      <p>La limite porte sur les <strong>dimensions</strong>, pas sur le poids du fichier : une image doit faire <strong>1 million de pixels maximum</strong> (largeur × hauteur), par exemple 1000x1000 — une photo de 1200x1200 (1,44 million de pixels) est refusée même si elle ne pèse que quelques dizaines de Ko. Redimensionnez avec un logiciel gratuit type FastStone Photo Resizer avant de la déposer dans le dossier. Une photo trop grande n'empêche pas la génération du reste du catalogue : elle est simplement ignorée (cellule vide), et son nom est listé dans le message de fin.</p>
+      <p>Les photos trop volumineuses ou dans un format non supporté ne peuvent pas être insérées ; redimensionnez-les (ex. 800x800 max) avec un logiciel gratuit type FastStone Photo Resizer avant de les déposer dans le dossier. Une photo qui échoue n'empêche pas la génération du reste du catalogue : elle est simplement ignorée (cellule vide), et son nom est listé dans le message de fin.</p>
     </div>
   </div>
 
@@ -737,11 +737,11 @@
     <h4 class="group-title">Catalogue photos</h4>
     <div class="action">
       <h5>📖 Générer catalogue photos</h5>
-      <p>Menu Sheets. Construit l'onglet CATALOGUE (ID / Marque / Photo / Désignation / QR Code / Catégorie) à partir des matériels de MATERIEL. Pour qu'une photo apparaisse, dépose dans le dossier Drive <code class="ref">Photos Catalogue Matériel</code> (créé automatiquement à côté du Sheet) un fichier nommé <strong>exactement comme l'ID concerné</strong> (ex. <code class="ref">OE-004.jpg</code> pour le matériel <code class="ref">OE-004</code>), puis relance le menu. Juste après la génération, les photos peuvent ne pas s'afficher tout de suite dans l'onglet CATALOGUE — c'est un simple souci de rafraîchissement de Sheets : change d'onglet puis reviens dessus, elles apparaissent. Une fois satisfait du résultat : Fichier &gt; Télécharger &gt; PDF.</p>
+      <p>Menu Sheets. Construit l'onglet CATALOGUE (ID / Marque / Photo / Désignation / QR Code / Catégorie) à partir des matériels de MATERIEL. Pour qu'une photo apparaisse, dépose dans le dossier Drive <code class="ref">Photos Catalogue Matériel</code> (créé automatiquement à côté du Sheet) un fichier nommé <strong>exactement comme l'ID concerné</strong> (ex. <code class="ref">OE-004.jpg</code> pour le matériel <code class="ref">OE-004</code>), puis relance le menu. Une fois satisfait du résultat : Fichier &gt; Télécharger &gt; PDF.</p>
     </div>
     <div class="action">
       <h5>Taille max d'une photo</h5>
-      <p>Identique à Gestion Stock : 1 million de pixels maximum (ex. 1000x1000), quel que soit le poids du fichier. Une photo trop grande est simplement ignorée (cellule vide) et listée dans le message de fin, sans bloquer le reste du catalogue.</p>
+      <p>Identique à Gestion Stock : redimensionnez les photos trop volumineuses (ex. 800x800 max) avant de les déposer. Une photo qui échoue est simplement ignorée (cellule vide) et listée dans le message de fin, sans bloquer le reste du catalogue.</p>
     </div>
   </div>
   </details>
