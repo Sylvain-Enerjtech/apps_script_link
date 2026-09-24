@@ -620,7 +620,7 @@
     <h4 class="group-title">Ajouter un produit</h4>
     <div class="action">
       <h5>🆕 Ajouter nouveau produit</h5>
-      <p>Menu Google Sheets uniquement (pas depuis le téléphone). Désignation, catégorie, référence, marque, stock initial, stock mini, conditionnement, localisation. L'ID est généré automatiquement selon la catégorie (ex : <code class="ref">CE-004</code>) et le tableau est retrié.</p>
+      <p>Menu Google Sheets uniquement (pas depuis le téléphone). Désignation, fournisseur, catégorie, référence, marque, stock initial, stock mini, conditionnement, localisation. L'ID est généré automatiquement selon la catégorie (ex : <code class="ref">CE-004</code>) et le tableau est retrié. Le fournisseur est stocké en colonne J de l'onglet STOCK.</p>
     </div>
 
     <h4 class="group-title">Suivi &amp; commandes (onglet web "📊 Gestion" / "📋 Commandes")</h4>
@@ -662,7 +662,11 @@
     </div>
     <div class="action">
       <h5>🔤 Trier le tableau par ID</h5>
-      <p>Re-trie manuellement l'onglet STOCK si besoin (se fait déjà automatiquement à chaque ajout de produit).</p>
+      <p>Re-trie manuellement l'onglet STOCK si besoin (se fait déjà automatiquement à chaque ajout de produit). Si un filtre est actif sur l'onglet, il est retiré automatiquement avant le tri — sinon le tri n'aurait aucun effet visible.</p>
+    </div>
+    <div class="action">
+      <h5>🔄 Réinitialiser compteur ID</h5>
+      <p>L'ID d'un nouveau produit vient d'un compteur qui retient le dernier numéro utilisé par catégorie (indépendant d'un éventuel filtre sur STOCK). Ce bouton le remet à zéro pour toutes les catégories : le prochain ajout recalcule l'ID à partir du plus grand déjà présent dans STOCK. Aucune ligne existante n'est modifiée — à utiliser seulement en cas de doute sur la suite des ID.</p>
     </div>
 
     <h4 class="group-title">Catalogue photos</h4>
@@ -671,8 +675,8 @@
       <p>Menu Sheets. Construit l'onglet CATALOGUE (ID / Référence / Photo / Désignation / QR Code / Catégorie) à partir des produits de STOCK. Pour qu'une photo apparaisse, dépose dans le dossier Drive <code class="ref">Photos Catalogue Stock</code> (créé automatiquement à côté du Sheet) un fichier nommé <strong>exactement comme l'ID concerné</strong> (ex. <code class="ref">OL-64.jpg</code> pour le produit <code class="ref">OL-64</code>), puis relance le menu. Une fois satisfait du résultat : Fichier &gt; Télécharger &gt; PDF.</p>
     </div>
     <div class="action">
-      <h5>Taille max d'une photo</h5>
-      <p>Les photos trop volumineuses ou dans un format non supporté ne peuvent pas être insérées ; redimensionnez-les (ex. 800x800 max) avec un logiciel gratuit type FastStone Photo Resizer avant de les déposer dans le dossier. Une photo qui échoue n'empêche pas la génération du reste du catalogue : elle est simplement ignorée (cellule vide), et son nom est listé dans le message de fin.</p>
+      <h5>Une photo ne s'affiche pas ?</h5>
+      <p>La cellule affiche "Image non valide" au lieu de la photo : le fichier est probablement trop lourd ou dans un format non pris en charge. Redimensionnez-le (ex. 800x800 max) avec un logiciel gratuit type FastStone Photo Resizer, remplacez le fichier dans le dossier Drive et relancez le menu.</p>
     </div>
   </div>
 
@@ -683,7 +687,7 @@
     <h4 class="group-title">Ajouter un matériel</h4>
     <div class="action">
       <h5>🆕 Ajouter nouveau matériel</h5>
-      <p>Menu Google Sheets. Désignation, catégorie, marque, n° série, localisation, état, date d'achat, dernière maintenance + fréquence (mois) — la prochaine maintenance est calculée automatiquement.</p>
+      <p>Menu Google Sheets. Désignation, catégorie, marque, n° série, localisation, état, fournisseur, date d'achat, dernière maintenance + fréquence (mois) — la prochaine maintenance est calculée automatiquement. Le fournisseur est stocké en colonne L de l'onglet MATERIEL (Date Achat, Dernière Maintenance, Fréquence et Prochaine Maintenance sont décalées d'une colonne, en M/N/O/P).</p>
     </div>
 
     <h4 class="group-title">Maintenance</h4>
@@ -733,6 +737,10 @@
       <h5>📄 Générer QR Codes / 📲 QR Code App Mobile</h5>
       <p>Identique à Gestion Stock.</p>
     </div>
+    <div class="action">
+      <h5>🔤 Trier le tableau par ID / 🔄 Réinitialiser compteur ID</h5>
+      <p>Identique à Gestion Stock (onglet MATERIEL) : le tri retire d'abord un éventuel filtre actif, et la réinitialisation du compteur ne concerne que la génération du prochain ID, aucune ligne existante n'est modifiée.</p>
+    </div>
 
     <h4 class="group-title">Catalogue photos</h4>
     <div class="action">
@@ -740,8 +748,8 @@
       <p>Menu Sheets. Construit l'onglet CATALOGUE (ID / Marque / Photo / Désignation / QR Code / Catégorie) à partir des matériels de MATERIEL. Pour qu'une photo apparaisse, dépose dans le dossier Drive <code class="ref">Photos Catalogue Matériel</code> (créé automatiquement à côté du Sheet) un fichier nommé <strong>exactement comme l'ID concerné</strong> (ex. <code class="ref">OE-004.jpg</code> pour le matériel <code class="ref">OE-004</code>), puis relance le menu. Une fois satisfait du résultat : Fichier &gt; Télécharger &gt; PDF.</p>
     </div>
     <div class="action">
-      <h5>Taille max d'une photo</h5>
-      <p>Identique à Gestion Stock : redimensionnez les photos trop volumineuses (ex. 800x800 max) avant de les déposer. Une photo qui échoue est simplement ignorée (cellule vide) et listée dans le message de fin, sans bloquer le reste du catalogue.</p>
+      <h5>Une photo ne s'affiche pas ?</h5>
+      <p>Identique à Gestion Stock : la cellule affiche "Image non valide" si le fichier est trop lourd ou dans un format non pris en charge. Redimensionnez-le (ex. 800x800 max) et relancez le menu.</p>
     </div>
   </div>
   </details>
